@@ -4,19 +4,33 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ValidationMessage {
+/**
+ * This class is here for legacy reasons
+ */
+public class ValidationMessage implements Validation<String> {
 	
+	/**
+	 * This should be extracted into a separate class
+	 * Currently left here for legacy reasons
+	 */
 	public enum Severity {
+		/**
+		 * Non erroneous information that should be passed along
+		 */
+		INFO,
 		/**
 		 * This calls attention to a certain situation that the developer might want to be aware of
 		 * Either you can't predict the runtime outcome or situations exist that can not be entirely validated
 		 */
 		WARNING,
-		
 		/**
 		 * This is a true validation error
 		 */
-		ERROR
+		ERROR,
+		/**
+		 * This is not only erroneous but for example dangerous 
+		 */
+		CRITICAL
 	}
 	
 	private Severity severity;
@@ -48,18 +62,22 @@ public class ValidationMessage {
 		this(severity, message, null, description);
 	}
 
+	@Override
 	public Severity getSeverity() {
 		return severity;
 	}
 
+	@Override
 	public String getMessage() {
 		return message;
 	}
 
+	@Override
 	public String getDescription() {
 		return description;
 	}
 
+	@Override
 	public Integer getCode() {
 		return code;
 	}
@@ -69,6 +87,7 @@ public class ValidationMessage {
 		return this;
 	}
 	
+	@Override
 	public List<String> getContext() {
 		return new ArrayList<String>(contexts);
 	}
