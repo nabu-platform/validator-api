@@ -43,6 +43,9 @@ public class ValidationMessage implements Validation<String> {
 	 */
 	private List<String> contexts = new ArrayList<String>();
 	
+	public ValidationMessage() {
+		// auto construct
+	}
 	public ValidationMessage(Severity severity, String message, Integer code, String description) {
 		this.severity = severity;
 		this.message = message;
@@ -95,5 +98,21 @@ public class ValidationMessage implements Validation<String> {
 	@Override
 	public String toString() {
 		return getContext() + " [" + getSeverity() + "] " + getMessage();
+	}
+
+	public void setContext(List<String> contexts) {
+		this.contexts = contexts;
+	}
+	public void setSeverity(Severity severity) {
+		this.severity = severity;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public void setCode(Integer code) {
+		this.code = code;
 	}
 }
