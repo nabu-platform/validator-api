@@ -1,13 +1,12 @@
 package be.nabu.libs.validator.api;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
  * This class is here for legacy reasons
  */
-public class ValidationMessage implements Validation<String> {
+public class ValidationMessage implements ContextUpdatableValidation<String> {
 	
 	/**
 	 * This should be extracted into a separate class
@@ -85,9 +84,9 @@ public class ValidationMessage implements Validation<String> {
 		return code;
 	}
 	
-	public ValidationMessage addContext(String...contexts) {
-		this.contexts.addAll(Arrays.asList(contexts));
-		return this;
+	@Override
+	public void addContext(String context) {
+		this.contexts.add(context);
 	}
 	
 	@Override
