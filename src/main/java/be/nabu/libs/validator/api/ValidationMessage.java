@@ -1,6 +1,7 @@
 package be.nabu.libs.validator.api;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,7 +35,8 @@ public class ValidationMessage implements ContextUpdatableValidation<String> {
 	
 	private Severity severity;
 	private String message, description;
-	private Integer code;
+	private String code;
+	private Date created;
 	
 	/**
 	 * You can set zero or more contexts on a validation message which may further enlighten what exactly was validated
@@ -45,23 +47,21 @@ public class ValidationMessage implements ContextUpdatableValidation<String> {
 	public ValidationMessage() {
 		// auto construct
 	}
-	public ValidationMessage(Severity severity, String message, Integer code, String description) {
+	
+	public ValidationMessage(Severity severity, String message, String code, String description) {
 		this.severity = severity;
 		this.message = message;
 		this.code = code;
 		this.description = description;
+		this.created = new Date();
 	}
 	
-	public ValidationMessage(Severity severity, String message, Integer code) {
-		this(severity, message, code, null);
-	}
-
 	public ValidationMessage(Severity severity, String message) {
-		this(severity, message, null, null);
+		this(severity, message, (String) null, null);
 	}
 	
 	public ValidationMessage(Severity severity, String message, String description) {
-		this(severity, message, null, description);
+		this(severity, message, (String) null, description);
 	}
 
 	@Override
@@ -80,7 +80,7 @@ public class ValidationMessage implements ContextUpdatableValidation<String> {
 	}
 
 	@Override
-	public Integer getCode() {
+	public String getCode() {
 		return code;
 	}
 	
@@ -111,7 +111,15 @@ public class ValidationMessage implements ContextUpdatableValidation<String> {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public void setCode(Integer code) {
+	public void setCode(String code) {
 		this.code = code;
+	}
+
+	@Override
+	public Date getCreated() {
+		return created;
+	}
+	public void setCreated(Date created) {
+		this.created = created;
 	}
 }

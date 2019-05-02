@@ -1,5 +1,6 @@
 package be.nabu.libs.validator.api;
 
+import java.util.Date;
 import java.util.List;
 
 import be.nabu.libs.validator.api.ValidationMessage.Severity;
@@ -16,9 +17,9 @@ public interface Validation<T> {
 	public List<T> getContext();
 	
 	/**
-	 * A numeric code for this validation, handy for automatically identifying validations
+	 * A structural code for this validation, handy for automatically identifying validations
 	 */
-	public Integer getCode();
+	public String getCode();
 	
 	/**
 	 * A short message describing the validation
@@ -29,4 +30,9 @@ public interface Validation<T> {
 	 * A longer description concerning the validation or things you can do about it
 	 */
 	public String getDescription();
+	
+	/**
+	 * When the validation was created
+	 */
+	public Date getCreated();
 }
